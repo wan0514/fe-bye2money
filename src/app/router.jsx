@@ -1,4 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import getYearMonth from '../shared/utils/getYearMonth';
 
 import HomePage from '../pages/HomePage';
 import CalendarPage from '../pages/CalendarPage';
@@ -7,13 +13,17 @@ import NotFoundPage from '../pages/NotFoundPage';
 import App from './App';
 
 function AppRouter() {
+  const { year, month } = getYearMonth(new Date());
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route path="/:year/:month" element={<HomePage />} />
-          <Route path="/calendar/:year/:month" element={<CalendarPage />} />
-          <Route path="/stats/:year/:month" element={<StatsPage />} />
+        <Route path="/" element={<Navigate to={`/${year}/${month}/home`} />} />
+
+        <Route path="/:year/:month" element={<App />}>
+          <Route path="home" element={<HomePage />} />
+          <Route path="calendar" element={<CalendarPage />} />
+          <Route path="stats" element={<StatsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
