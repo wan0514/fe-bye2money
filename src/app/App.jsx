@@ -1,17 +1,26 @@
-import { Global, ThemeProvider } from '@emotion/react';
-import globalStyle from './theme/globalStyle';
-import theme from './theme/theme';
+import { useParams, Navigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import getYearMonth from '../shared/utils/getYearMonth';
+import useFetchRecordsByDate from '../shared/hooks/useFetchRecordsByDate';
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Global styles={globalStyle} />
-      <div>
-        <div style={theme.typography.semibold16}>프리탠다드</div>
-        <div style={theme.typography.serif24}>조선일보명조</div>
-      </div>
-    </ThemeProvider>
-  );
+  const { year: paramYear, month: paramMonth } = useParams();
+  const { year: currentYear, year: currentMonth } = getYearMonth(new Date());
+
+  const year = paramYear || currentYear;
+  const month = paramMonth || currentMonth;
+
+  const { data, loading } = useFetchRecordsByDate(year, month);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!paramYear || !paramMonth) {
+    return <Navigate to={`/${currentYear}/${currentMonth}`} />;
+  }
+
+  return <Outlet context={{ data }} />;
 }
 
 export default App;
