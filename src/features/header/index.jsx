@@ -1,7 +1,7 @@
-import useMonthNavigation from './hooks/useMonthNavigation';
+import useMonthNavigator from './hooks/useMonthNavigator';
 
 function Header() {
-  const { goToNextMonth, goToPreviousMonth } = useMonthNavigation();
+  const { goToNextMonth, goToPreviousMonth } = useMonthNavigator();
 
   return (
     <>

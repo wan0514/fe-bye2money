@@ -1,7 +1,7 @@
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import buildUrlWithPage from '../../../shared/utils/buildUrlWithPage';
 
-function useMonthNavigation() {
+function useMonthNavigator() {
   const { year, month } = useParams();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -28,4 +28,4 @@ function useMonthNavigation() {
   return { goToNextMonth, goToPreviousMonth };
 }
 
-export default useMonthNavigation;
+export default useMonthNavigator;
