@@ -19,13 +19,12 @@ function AppRouter() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to={`/${year}/${month}/home`} />} />
-
         <Route path="/:year/:month" element={<App />}>
           <Route path="home" element={<HomePage />} />
           <Route path="calendar" element={<CalendarPage />} />
           <Route path="stats" element={<StatsPage />} />
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );
