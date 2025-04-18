@@ -14,11 +14,15 @@ import App from './App';
 
 function AppRouter() {
   const { year, month } = getYearMonth(new Date());
+  const paddedMonth = String(month).padStart(2, '0');
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to={`/${year}/${month}/home`} />} />
+        <Route
+          path="/"
+          element={<Navigate to={`/${year}/${paddedMonth}/home`} />}
+        />
         <Route path="/:year/:month" element={<App />}>
           <Route path="home" element={<HomePage />} />
           <Route path="calendar" element={<CalendarPage />} />
