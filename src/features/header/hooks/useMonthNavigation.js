@@ -1,4 +1,5 @@
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import buildUrlWithPage from '../../../shared/utils/buildUrlWithPage';
 
 function MonthNavigator() {
   const { year, month } = useParams();
@@ -17,8 +18,8 @@ function MonthNavigator() {
     const updatedYear = updatedDate.getFullYear();
     const updatedMonth = String(updatedDate.getMonth() + 1).padStart(2, '0');
 
-    const remainingPath = pathname.split('/').slice(3).join('/');
-    return `/${updatedYear}/${updatedMonth}/${remainingPath}`;
+    const pagePath = pathname.split('/').slice(3).join('/');
+    return buildUrlWithPage(updatedYear, updatedMonth, pagePath);
   };
 
   const goToNextMonth = () => navigate(buildNewPath(1));
