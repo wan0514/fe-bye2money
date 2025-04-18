@@ -5,6 +5,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import getYearMonth from '../shared/utils/getYearMonth';
+import buildUrlWithPage from '../shared/utils/buildUrlWithPage';
 
 import HomePage from '../pages/HomePage';
 import CalendarPage from '../pages/CalendarPage';
@@ -14,15 +15,12 @@ import App from './App';
 
 function AppRouter() {
   const { year, month } = getYearMonth(new Date());
-  const paddedMonth = String(month).padStart(2, '0');
+  const initialUrl = buildUrlWithPage(year, month, 'home');
 
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={<Navigate to={`/${year}/${paddedMonth}/home`} />}
-        />
+        <Route path="/" element={<Navigate to={initialUrl} />} />
         <Route path="/:year/:month" element={<App />}>
           <Route path="home" element={<HomePage />} />
           <Route path="calendar" element={<CalendarPage />} />
