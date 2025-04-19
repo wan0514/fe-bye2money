@@ -1,20 +1,12 @@
-import { useOutletContext, useLocation } from 'react-router-dom';
-import { getActiveTabFromPath } from '../shared/utils/getActiveTabFromPath';
-import Header from '../features/header';
+import { useOutletContext } from 'react-router-dom';
 
 function StatsPage() {
   const { data } = useOutletContext();
 
-  const { pathname } = useLocation();
-  const activeTab = getActiveTabFromPath(pathname);
-
   return (
-    <>
-      <Header year={data.year} month={data.month} activeTab={activeTab} />
-      <div>
-        통계 페이지입니다. 날짜는 {data.year}.{data.month}
-      </div>
-    </>
+    <div>
+      통계 페이지입니다. 날짜는 {data.year}.{data.month}
+    </div>
   );
 }
 
