@@ -18,7 +18,8 @@ function useMonthNavigator() {
     const updatedYear = updatedDate.getFullYear();
     const updatedMonth = String(updatedDate.getMonth() + 1).padStart(2, '0');
 
-    const pagePath = pathname.split('/').slice(3).join('/');
+    const segments = pathname.split('/').filter(Boolean);
+    const pagePath = segments[0];
     return buildUrlWithPage(updatedYear, updatedMonth, pagePath);
   };
 

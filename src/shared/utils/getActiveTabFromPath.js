@@ -1,3 +1,3 @@
 export function getActiveTabFromPath(pathname) {
-  return pathname.split('/').at(-1);
+  return pathname.split('/').filter(Boolean)[0];
 }

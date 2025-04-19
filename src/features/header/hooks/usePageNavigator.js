@@ -19,7 +19,7 @@ export default function usePageNavigator() {
       throw new Error(`Invalid page type: ${pageType}`);
     }
 
-    navigate(`/${currentYear}/${currentMonth}/${pageType}`);
+    navigate(`/${pageType}/${currentYear}/${currentMonth}`);
   };
 
   return { navigateTo };
