@@ -1,4 +1,9 @@
 import styled from '@emotion/styled';
+
+import NoteIcon from '../../assets/icons/doc.svg?react';
+import CalendarIcon from '../../assets/icons/calendar.svg?react';
+import StatsIcon from '../../assets/icons/chart.svg?react';
+
 import useMonthNavigator from './hooks/useMonthNavigator';
 import usePageNavigator from './hooks/usePageNavigator';
 import LogoSection from './components/LogoSection';
@@ -25,6 +30,12 @@ function Header({ year, month, activeTab }) {
   const { goToNextMonth, goToPreviousMonth } = useMonthNavigator();
   const { navigateTo } = usePageNavigator();
 
+  const tabItems = [
+    { key: 'home', icon: NoteIcon, path: 'home' },
+    { key: 'calendar', icon: CalendarIcon, path: 'calendar' },
+    { key: 'stats', icon: StatsIcon, path: 'stats' },
+  ];
+
   return (
     <HeaderWrapper>
       <HeaderContainer>
@@ -37,9 +48,8 @@ function Header({ year, month, activeTab }) {
         />
         <TabNavigation
           activeTab={activeTab}
-          onNoteClick={() => navigateTo('home')}
-          onCalendarClick={() => navigateTo('calendar')}
-          onStatsClick={() => navigateTo('stats')}
+          tabs={tabItems}
+          onTabClick={(path) => navigateTo(path)}
         />
       </HeaderContainer>
     </HeaderWrapper>

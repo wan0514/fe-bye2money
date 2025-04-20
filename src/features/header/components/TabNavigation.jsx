@@ -1,7 +1,4 @@
 import styled from '@emotion/styled';
-import NoteIcon from '../../../assets/icons/doc.svg?react';
-import CalendarIcon from '../../../assets/icons/calendar.svg?react';
-import StatsIcon from '../../../assets/icons/chart.svg?react';
 
 const IconWrapper = styled.div`
   display: flex;
@@ -26,22 +23,15 @@ const IconButton = styled.div`
   }
 `;
 
-export default function TabNavigator({
-  activeTab,
-  onNoteClick,
-  onCalendarClick,
-  onStatsClick,
-}) {
-  const tabs = [
-    { key: 'home', icon: NoteIcon, handler: onNoteClick },
-    { key: 'calendar', icon: CalendarIcon, handler: onCalendarClick },
-    { key: 'stats', icon: StatsIcon, handler: onStatsClick },
-  ];
-
+export default function TabNavigator({ activeTab, tabs, onTabClick }) {
   return (
     <IconWrapper>
-      {tabs.map(({ key, icon: Icon, handler }) => (
-        <IconButton key={key} active={activeTab === key} onClick={handler}>
+      {tabs.map(({ key, icon: Icon, path }) => (
+        <IconButton
+          key={key}
+          active={activeTab === key}
+          onClick={() => onTabClick(path)}
+        >
           <Icon />
         </IconButton>
       ))}
