@@ -1,7 +1,9 @@
 import { useReducer } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import CATEGORY_TYPES from '../shared/constants/categoryOptions';
 import getTodayTimestamp from '../shared/utils/getTodayTimestamp';
 import formReducer from '../shared/reducers/formReducer';
+import Form from '../features/form';
 
 const initialFormState = {
   id: null, // 생성 시에는 null, 수정 시에는 서버에서 받은 id
@@ -12,6 +14,9 @@ const initialFormState = {
   type: 'expense',
   timestamp: getTodayTimestamp(),
 };
+
+//TODO fetch로 결제수단 가져오기
+const mockPaymentOptions = ['현대카드', '신한카드'];
 
 function HomePage() {
   const [formData, dispatch] = useReducer(formReducer, initialFormState);
@@ -44,7 +49,18 @@ function HomePage() {
     dispatch({ type: 'INIT_EDIT', payload: record });
   };
 
-  return <div>기본 페이지입니다. 내역 개수는 {records.length}</div>;
+  return (
+    <>
+      <Form
+        formData={formData}
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+        paymentOptions={mockPaymentOptions}
+        categoryOptions={CATEGORY_TYPES[formData.type]}
+      />
+      <button onClick={handleEdit}>수정할 레코드</button>
+    </>
+  );
 }
 
 export default HomePage;

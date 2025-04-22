@@ -6,7 +6,7 @@ function CategorySelect({ value, options, onChange }) {
         <option value="">선택하세요</option>
         {options.map((category) => (
           <option key={category} value={category}>
-            {category}
+            {category.name}
           </option>
         ))}
       </select>
