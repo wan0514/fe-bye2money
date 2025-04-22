@@ -1,19 +1,9 @@
 import { useReducer } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import CATEGORY_TYPES from '../shared/constants/categoryOptions';
-import getTodayTimestamp from '../shared/utils/getTodayTimestamp';
+import initialFormState from '../features/form/reducers/initialFormState';
 import formReducer from '../features/form/reducers/formReducer';
 import Form from '../features/form';
-
-const initialFormState = {
-  id: null, // 생성 시에는 null, 수정 시에는 서버에서 받은 id
-  category: '',
-  description: '',
-  paymentMethod: '',
-  amount: '',
-  type: 'expense',
-  timestamp: getTodayTimestamp(),
-};
 
 //TODO fetch로 결제수단 가져오기
 const mockPaymentOptions = ['현대카드', '신한카드'];

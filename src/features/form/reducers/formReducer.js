@@ -1,3 +1,5 @@
+import initialFormState from './initialFormState';
+
 export default function formReducer(state, action) {
   switch (action.type) {
     case 'SET_FIELD':
