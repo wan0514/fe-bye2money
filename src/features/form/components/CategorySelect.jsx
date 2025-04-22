@@ -5,7 +5,7 @@ function CategorySelect({ value, options, onChange }) {
       <select value={value} onChange={(e) => onChange(e.target.value)}>
         <option value="">선택하세요</option>
         {options.map((category) => (
-          <option key={category} value={category}>
+          <option key={category.id} value={category.name}>
             {category.name}
           </option>
         ))}
