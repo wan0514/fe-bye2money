@@ -1,15 +1,16 @@
 import { useReducer } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import CATEGORY_TYPES from '../shared/constants/categoryOptions';
+import useFetchPayments from '../shared/hooks/useFetchPayments';
 import initialFormState from '../features/form/reducers/initialFormState';
 import formReducer from '../features/form/reducers/formReducer';
 import Form from '../features/form';
 
-//TODO fetch로 결제수단 가져오기
-const mockPaymentOptions = ['현대카드', '신한카드'];
+const TEST_USER_ID = 1;
 
 function HomePage() {
   const [formData, dispatch] = useReducer(formReducer, initialFormState);
+  const { payments, loading, error } = useFetchPayments(TEST_USER_ID);
   const { records } = useOutletContext();
 
   const handleChange = (field, value) => {
@@ -33,11 +34,15 @@ function HomePage() {
       return;
     }
     // TODO 서버로 전송
+    handleReset();
   };
 
   const handleEdit = (record) => {
     dispatch({ type: 'INIT_EDIT', payload: record });
   };
+
+  if (loading) return <div>결제수단을 불러오는 중입니다...</div>;
+  if (error) return <div>에러: {error}</div>;
 
   return (
     <>
@@ -45,7 +50,7 @@ function HomePage() {
         formData={formData}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        paymentOptions={mockPaymentOptions}
+        paymentOptions={payments}
         categoryOptions={CATEGORY_TYPES[formData.type]}
       />
       <button onClick={handleEdit}>수정할 레코드</button>

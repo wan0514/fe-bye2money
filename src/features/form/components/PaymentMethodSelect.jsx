@@ -5,8 +5,8 @@ function PaymentMethodSelect({ value, options, onChange }) {
       <select value={value} onChange={(e) => onChange(e.target.value)}>
         <option value="">선택하세요</option>
         {options.map((method) => (
-          <option key={method} value={method}>
-            {method}
+          <option key={method.id} value={method.name}>
+            {method.name}
           </option>
         ))}
       </select>
