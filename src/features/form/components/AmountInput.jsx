@@ -1,4 +1,16 @@
 function AmountInput({ type, amount, onTypeToggle, onAmountChange }) {
+  const formatAmount = (value) => {
+    if (!value) return '';
+    const num = Number(value.toString().replaceAll(',', ''));
+    return num.toLocaleString();
+  };
+
+  const handleChange = (e) => {
+    const rawValue = e.target.value.replace(/,/g, '');
+    const numericValue = rawValue.replace(/\D/g, '');
+    onAmountChange(numericValue);
+  };
+
   return (
     <div>
       <label>금액</label>
@@ -6,9 +18,10 @@ function AmountInput({ type, amount, onTypeToggle, onAmountChange }) {
         {type === 'expense' ? '–' : '+'}
       </button>
       <input
-        type="number"
-        value={amount}
-        onChange={(e) => onAmountChange(e.target.value)}
+        type="text"
+        value={formatAmount(amount)}
+        onChange={handleChange}
+        placeholder="0"
       />
       <span>원</span>
     </div>
