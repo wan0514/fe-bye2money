@@ -2,7 +2,7 @@ import { useReducer } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import CATEGORY_TYPES from '../shared/constants/categoryOptions';
 import getTodayTimestamp from '../shared/utils/getTodayTimestamp';
-import formReducer from '../shared/reducers/formReducer';
+import formReducer from '../features/form/reducers/formReducer';
 import Form from '../features/form';
 
 const initialFormState = {
