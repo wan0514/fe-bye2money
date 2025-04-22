@@ -18,15 +18,15 @@ function App() {
   const { year, month } = useParams();
   const { records, dispatch, loading, error } = useRecordState(year, month);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <LayoutWrapper>
       <Header />
       <Content>
-        <Outlet context={{ records, dispatch }} />
+        {loading ? (
+          <div>loading...</div>
+        ) : (
+          <Outlet context={{ records, dispatch }} />
+        )}
       </Content>
     </LayoutWrapper>
   );
