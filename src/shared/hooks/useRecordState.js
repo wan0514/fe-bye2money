@@ -19,9 +19,9 @@ function recordReducer(state, action) {
   }
 }
 
-function useRecordState(initialData) {
-  const safeInitialData = initialData ?? [];
-  const [state, dispatch] = useReducer(recordReducer, safeInitialData);
+function useRecordState() {
+  const initialData = [];
+  const [state, dispatch] = useReducer(recordReducer, initialData);
   return { records: state, dispatch };
 }
 
