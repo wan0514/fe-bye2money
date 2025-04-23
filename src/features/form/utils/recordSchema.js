@@ -18,7 +18,7 @@ const recordSchema = z
     category: z.string().min(1, '카테고리를 입력해주세요'),
   })
   .superRefine((data, ctx) => {
-    const validIds = CATEGORY_TYPES[data.type].map((c) => c.id); // 카테고리가 type에 맞는지 확인
+    const validIds = CATEGORY_TYPES[data.type].map((c) => c.name); // 카테고리가 type에 맞는지 확인 : name(ex: '생활')으로 비교
 
     if (!validIds.includes(data.category)) {
       ctx.addIssue({
