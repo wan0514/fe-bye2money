@@ -18,8 +18,6 @@ function AppRouter() {
   const { year, month } = getYearMonth(new Date());
   const initialUrl = buildUrlWithPage(year, month, 'home');
 
-  console.log(initialUrl);
-
   return (
     <Router>
       <Routes>

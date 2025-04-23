@@ -27,8 +27,7 @@ function HomePage() {
     const result = recordSchema.safeParse(formData);
 
     if (!result.success) {
-      const errors = result.error.flatten().fieldErrors;
-      console.log(errors); // TODO errors : 추후 사용자 ux를 위해 사용될 예정
+      const errors = result.error.flatten().fieldErrors; // TODO errors : 추후 사용자 ux를 위해 사용될 예정
       return;
     }
     // TODO 서버로 전송
