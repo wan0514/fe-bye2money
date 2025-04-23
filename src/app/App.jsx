@@ -19,7 +19,7 @@ const Content = styled.main`
 function App() {
   const { year, month } = useParams();
   const { data: fetchedData, loading } = useFetchRecordsByDate(year, month);
-  const { records, dispatch } = useRecordState(fetchedData);
+  const { records, dispatch } = useRecordState();
 
   useEffect(() => {
     if (!loading && fetchedData) {
