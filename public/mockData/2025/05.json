@@ -3,7 +3,7 @@
   "month": "05",
   "records": [
     {
-      "id": "38472894783738237893982487",
+      "id": "dfb46503-4e83-428b-8c00-953303d76be6",
       "category": "기타 수입",
       "description": "부수입",
       "paymentMethod": "현대카드",
@@ -12,7 +12,7 @@
       "timestamp": "2024-08-16T12:34:56Z"
     },
     {
-      "id": "38472892478373827842393982487",
+      "id": "04c953af-3dcd-4c7a-ba84-d81088f7c471",
       "category": "용돈",
       "description": "용돈이다!!",
       "paymentMethod": "현대카드",
@@ -21,7 +21,7 @@
       "timestamp": "2024-08-15T12:34:56Z"
     },
     {
-      "id": "384325472894783738275893982487",
+      "id": "602128f3-5c61-4fcf-bb60-4303a1136863",
       "category": "월급",
       "description": "월급이다!!",
       "paymentMethod": "비씨카드",
