@@ -1,6 +1,6 @@
-function ConfirmButton({ onClick }) {
+function ConfirmButton({ onClick, isFormValid }) {
   return (
-    <button type="button" onClick={onClick}>
+    <button type="button" disabled={!isFormValid} onClick={onClick}>
       ✔
     </button>
   );
