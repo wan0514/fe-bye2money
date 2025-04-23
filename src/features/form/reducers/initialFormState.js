@@ -5,7 +5,7 @@ const initialFormState = {
   category: '',
   description: '',
   paymentMethod: '',
-  amount: '',
+  amount: 0,
   type: 'expense',
   timestamp: getTodayTimestamp(),
 };

@@ -7,9 +7,7 @@ const recordSchema = z
     type: z.enum(['income', 'expense'], {
       message: '수입/지출을 선택해주세요',
     }),
-    amount: z
-      .string()
-      .regex(/^[1-9][0-9]*$/, '0으로 시작할 수 없고 숫자만 입력해주세요'),
+    amount: z.number().min(1, '1원 이상 입력해주세요'),
     description: z
       .string()
       .min(1, '내용을 입력해주세요')

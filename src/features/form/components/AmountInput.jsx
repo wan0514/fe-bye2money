@@ -6,9 +6,10 @@ function AmountInput({ type, amount, onTypeToggle, onAmountChange }) {
   };
 
   const handleChange = (e) => {
-    const rawValue = e.target.value.replace(/,/g, '');
-    const numericValue = rawValue.replace(/\D/g, '');
-    onAmountChange(numericValue);
+    const rawValue = e.target.value.replace(/,/g, ''); // 쉼표 제거
+    const numericValue = parseInt(rawValue.replace(/\D/g, ''), 10); // 숫자만 추출
+
+    onAmountChange(!isNaN(numericValue) ? numericValue : 0);
   };
 
   return (
