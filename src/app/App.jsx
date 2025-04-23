@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 import { useParams, Outlet } from 'react-router-dom';
+import useFetchRecordsByDate from '../shared/hooks/useFetchRecordsByDate';
 import useRecordState from '../shared/hooks/useRecordState';
 import Header from '../features/header';
 
@@ -16,7 +18,14 @@ const Content = styled.main`
 
 function App() {
   const { year, month } = useParams();
-  const { records, dispatch, loading, error } = useRecordState(year, month);
+  const { data: fetchedData, loading } = useFetchRecordsByDate(year, month);
+  const { records, dispatch } = useRecordState(fetchedData);
+
+  useEffect(() => {
+    if (!loading && fetchedData) {
+      dispatch({ type: 'SET_RECORDS', payload: fetchedData });
+    }
+  }, [loading, fetchedData]);
 
   return (
     <LayoutWrapper>
