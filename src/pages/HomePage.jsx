@@ -15,6 +15,9 @@ function HomePage() {
   const { payments, loading, error } = useFetchPayments(TEST_USER_ID);
   const { records } = useOutletContext();
 
+  const validationResult = recordSchema.safeParse(formData);
+  const isFormValid = validationResult.success;
+
   const handleChange = (field, value) => {
     dispatch({ type: 'SET_FIELD', field, value });
   };
@@ -24,9 +27,7 @@ function HomePage() {
   };
 
   const handleSubmit = () => {
-    const result = recordSchema.safeParse(formData);
-
-    if (!result.success) {
+    if (!isFormValid) {
       const errors = result.error.flatten().fieldErrors; // TODO errors : 추후 사용자 ux를 위해 사용될 예정
       return;
     }
@@ -49,6 +50,7 @@ function HomePage() {
         onSubmit={handleSubmit}
         paymentOptions={payments}
         categoryOptions={CATEGORY_TYPES[formData.type]}
+        isFormValid={isFormValid}
       />
       <Record recordData={records} onSelect={handleEdit} />
     </>

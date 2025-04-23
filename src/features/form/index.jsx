@@ -12,6 +12,7 @@ function Form({
   onSubmit,
   paymentOptions,
   categoryOptions,
+  isFormValid,
 }) {
   return (
     <form
@@ -56,7 +57,7 @@ function Form({
         onChange={(value) => onChange('category', value)}
       />
 
-      <ConfirmButton onClick={onSubmit} />
+      <ConfirmButton onClick={onSubmit} isFormValid={isFormValid} />
     </form>
   );
 }
