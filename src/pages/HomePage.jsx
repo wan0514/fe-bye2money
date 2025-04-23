@@ -6,6 +6,7 @@ import initialFormState from '../features/form/reducers/initialFormState';
 import formReducer from '../features/form/reducers/formReducer';
 import recordSchema from '../features/form/utils/recordSchema';
 import Form from '../features/form';
+import Record from '../features/record';
 
 const TEST_USER_ID = 1;
 
@@ -50,7 +51,7 @@ function HomePage() {
         paymentOptions={payments}
         categoryOptions={CATEGORY_TYPES[formData.type]}
       />
-      <button onClick={handleEdit}>수정할 레코드</button>
+      <Record recordData={records} onSelect={handleEdit} />
     </>
   );
 }
