@@ -4,6 +4,7 @@ import CATEGORY_TYPES from '../shared/constants/categoryOptions';
 import useFetchPayments from '../shared/hooks/useFetchPayments';
 import initialFormState from '../features/form/reducers/initialFormState';
 import formReducer from '../features/form/reducers/formReducer';
+import recordSchema from '../features/form/utils/recordSchema';
 import Form from '../features/form';
 
 const TEST_USER_ID = 1;
@@ -22,15 +23,11 @@ function HomePage() {
   };
 
   const handleSubmit = () => {
-    // TODO 유효성 검사 변경(현재는 테스트)
-    const isValid =
-      formData.amount &&
-      formData.description &&
-      formData.category &&
-      formData.paymentMethod;
+    const result = recordSchema.safeParse(formData);
 
-    if (!isValid) {
-      alert('모든 입력값은 필수입니다.');
+    if (!result.success) {
+      const errors = result.error.flatten().fieldErrors;
+      console.log(errors); // TODO errors : 추후 사용자 ux를 위해 사용될 예정
       return;
     }
     // TODO 서버로 전송
