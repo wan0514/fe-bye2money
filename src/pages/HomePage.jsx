@@ -1,6 +1,7 @@
 import { useReducer, useMemo, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import deepEqual from '../shared/utils/deepEqual';
+import getTimestamp from '../shared/utils/getTimestamp';
 import { v4 as uuidv4 } from 'uuid';
 import CATEGORY_TYPES from '../shared/constants/categoryOptions';
 import useFetchPayments from '../shared/hooks/useFetchPayments';
@@ -52,7 +53,11 @@ function HomePage() {
       // TODO 생성 api 호출, resonse값으로 id를 받으면 payload에 추가, 현재는 uuid로 랜덤 생성
       recordDataDispatch({
         type: 'ADD_RECORD',
-        payload: { ...formData, id: uuidv4() },
+        payload: {
+          ...formData,
+          id: uuidv4(),
+          createdAt: getTimestamp(new Date()),
+        },
       });
     }
 
