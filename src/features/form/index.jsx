@@ -1,65 +1,25 @@
-import React from 'react';
-import DateInput from './components/DateInput';
-import AmountInput from './components/AmountInput';
-import DescriptionInput from './components/DescriptionInput';
-import PaymentMethodSelect from './components/PaymentMethodSelect';
-import CategorySelect from './components/CategorySelect';
-import ConfirmButton from './components/ConfirmButton';
+import CATEGORY_TYPES from '../../shared/constants/categoryOptions';
+import useFetchPayments from '../../shared/hooks/useFetchPayments';
+import Form from './components/Form';
 
-function Form({
-  formData,
-  onChange,
-  onSubmit,
-  paymentOptions,
-  categoryOptions,
-  isFormValid,
-}) {
+const TEST_USER_ID = 1;
+
+function FormContainer({ formData, onChange, onSubmit, isFormValid }) {
+  const { payments, loading, error } = useFetchPayments(TEST_USER_ID);
+
+  if (loading) return <div>결제수단을 불러오는 중입니다...</div>;
+  if (error) return <div>에러: {error}</div>;
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit();
-      }}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '16px',
-      }}
-    >
-      <DateInput
-        value={formData.date}
-        onChange={(value) => onChange('date', value)}
-      />
-
-      <AmountInput
-        type={formData.type}
-        amount={formData.amount}
-        onTypeToggle={() =>
-          onChange('type', formData.type === 'expense' ? 'income' : 'expense')
-        }
-        onAmountChange={(value) => onChange('amount', value)}
-      />
-
-      <DescriptionInput
-        value={formData.description}
-        onChange={(value) => onChange('description', value)}
-      />
-
-      <PaymentMethodSelect
-        value={formData.paymentMethod}
-        options={paymentOptions}
-        onChange={(value) => onChange('paymentMethod', value)}
-      />
-
-      <CategorySelect
-        value={formData.category}
-        options={categoryOptions}
-        onChange={(value) => onChange('category', value)}
-      />
-
-      <ConfirmButton onClick={onSubmit} isFormValid={isFormValid} />
-    </form>
+    <Form
+      formData={formData}
+      onChange={onChange}
+      onSubmit={onSubmit}
+      paymentOptions={payments}
+      categoryOptions={CATEGORY_TYPES[formData.type]}
+      isFormValid={isFormValid}
+    />
   );
 }
 
-export default Form;
+export default FormContainer;
