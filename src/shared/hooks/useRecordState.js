@@ -1,4 +1,5 @@
-import { useReducer } from 'react';
+import { useReducer, useMemo } from 'react';
+import { getSortedRecordsByDate } from '../../shared/utils/getSortedRecordsByDate';
 
 function recordReducer(state, action) {
   switch (action.type) {
@@ -22,7 +23,10 @@ function recordReducer(state, action) {
 function useRecordState() {
   const initialData = [];
   const [state, dispatch] = useReducer(recordReducer, initialData);
-  return { records: state, dispatch };
+
+  // 최신순으로 정렬 후 반환
+  const sortedRecords = useMemo(() => getSortedRecordsByDate(state), [state]);
+  return { records: sortedRecords, dispatch };
 }
 
 export default useRecordState;
