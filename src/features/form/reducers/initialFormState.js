@@ -1,4 +1,4 @@
-import { getFormatDateToString } from '../../../shared/utils/getFormatDateToString';
+import { getFormatDateToString } from '../../../shared/utils/date';
 
 const initialFormState = {
   id: null,

@@ -1,5 +1,5 @@
 import { useReducer, useMemo } from 'react';
-import { getSortedRecordsByDate } from '../../shared/utils/getSortedRecordsByDate';
+import { getSortedRecordsByDate } from '../../shared/utils/record';
 
 function recordReducer(state, action) {
   switch (action.type) {
