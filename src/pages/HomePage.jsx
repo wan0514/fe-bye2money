@@ -1,6 +1,7 @@
 import { useReducer, useMemo, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import deepEqual from '../shared/utils/deepEqual';
+import { v4 as uuidv4 } from 'uuid';
 import CATEGORY_TYPES from '../shared/constants/categoryOptions';
 import useFetchPayments from '../shared/hooks/useFetchPayments';
 import initialFormState from '../features/form/reducers/initialFormState';
@@ -15,7 +16,7 @@ function HomePage() {
   const [formData, dispatch] = useReducer(formReducer, initialFormState);
   const [originalFormData, setOriginalFormData] = useState(null);
   const { payments, loading, error } = useFetchPayments(TEST_USER_ID);
-  const { records } = useOutletContext();
+  const { records, dispatch: recordDataDispatch } = useOutletContext();
 
   const validationResult = recordSchema.safeParse(formData);
   const isFormValid = validationResult.success;
@@ -23,9 +24,7 @@ function HomePage() {
   const isSubmitEnabled = useMemo(() => {
     const isEditMode = originalFormData !== null;
 
-    return isEditMode
-      ? !deepEqual(formData, originalFormData) // 수정 모드 → 변경되었는지
-      : isFormValid;
+    return isEditMode ? !deepEqual(formData, originalFormData) : isFormValid;
   }, [formData, originalFormData]);
 
   const handleChange = (field, value) => {
@@ -48,10 +47,13 @@ function HomePage() {
 
     if (isEditMode) {
       // TODO 수정 api 호출
-      // TODO recordDataDispatch : UPDATE_RECORD
+      recordDataDispatch({ type: 'UPDATE_RECORD', payload: formData });
     } else {
-      // TODO 생성 api 호출, resonse값으로 id를 받으면 payload에 추가
-      // TODO recordDataDispatch : ADD_RECORD
+      // TODO 생성 api 호출, resonse값으로 id를 받으면 payload에 추가, 현재는 uuid로 랜덤 생성
+      recordDataDispatch({
+        type: 'ADD_RECORD',
+        payload: { ...formData, id: uuidv4() },
+      });
     }
 
     handleReset();
