@@ -47,45 +47,31 @@ function HomePage() {
     };
   };
 
-  const addRecordIfCurrentMonth = (record, isNowInCurrentMonth) => {
-    if (isNowInCurrentMonth) {
-      recordDataDispatch({ type: 'ADD_RECORD', payload: record });
-    }
-  };
-
-  const updateRecordIfCurrentMonth = (record, isNowInCurrentMonth) => {
-    if (isNowInCurrentMonth) {
-      recordDataDispatch({ type: 'UPDATE_RECORD', payload: record });
-    } else {
-      recordDataDispatch({ type: 'DELETE_RECORD', payload: record.id });
-    }
-  };
-
   const handleSubmit = async () => {
+    const validationResult = recordSchema.safeParse(formData);
+    if (!validationResult.success) return;
+
     const isEditMode = originalFormData !== null;
-    const isNowInCurrentMonth = isSameYearMonth(
+
+    const isInCurrentMonth = isSameYearMonth(
       currentYear,
       currentMonth,
       formData.date
     );
 
-    const validationResult = recordSchema.safeParse(formData);
-    if (!validationResult.success) return;
+    const record = buildRecordToSend(formData, isEditMode); //TODO 추후 서버로 오는 resonse.data 사용 시 buildRecordToSend 함수 제거
 
     try {
-      const recordToSend = buildRecordToSend(formData, isEditMode); //TODO 추후 서버로 오는 resonse.data 사용 시 buildRecordToSend 함수 제거
-
       // TODO 서버 api 추가
       // const response = isEditMode
       //   ? await patchRecordToServer(recordToSend)
       //   : await postRecordToServer(recordToSend);
       // const savedRecord = response.data;
 
-      if (isEditMode) {
-        updateRecordIfCurrentMonth(recordToSend, isNowInCurrentMonth); // TODO 서버 연결 시 recordToSend 대신 savedRecord 사용
-      } else {
-        addRecordIfCurrentMonth(recordToSend, isNowInCurrentMonth);
-      }
+      recordDataDispatch({
+        type: isEditMode ? 'UPDATE_RECORD' : 'ADD_RECORD',
+        payload: { record, isInCurrentMonth },
+      });
 
       handleReset();
     } catch (error) {
