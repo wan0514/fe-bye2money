@@ -1,5 +1,7 @@
 import { useReducer, useMemo, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import useCurrentYearMonthNumber from '../shared/hooks/useCurrentYearMonthNumber';
+import { isSameYearMonth } from '../shared/utils/isSameYearMonth';
 import deepEqual from '../shared/utils/deepEqual';
 import getTimestamp from '../shared/utils/getTimestamp';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,6 +12,7 @@ import Form from '../features/form';
 import Record from '../features/record';
 
 function HomePage() {
+  const { currentYear, currentMonth } = useCurrentYearMonthNumber();
   const [formData, dispatch] = useReducer(formReducer, initialFormState);
   const [originalFormData, setOriginalFormData] = useState(null);
   const { records, dispatch: recordDataDispatch } = useOutletContext();
@@ -32,36 +35,63 @@ function HomePage() {
     dispatch({ type: 'RESET_FORM' });
   };
 
-  const handleSubmit = () => {
-    const isEditMode = originalFormData !== null;
-    const validationResult = recordSchema.safeParse(formData);
-
-    if (!validationResult.success) {
-      const errors = validationResult.error.flatten().fieldErrors; // TODO errors : 추후 사용자 ux를 위해 사용될 예정
-      return;
-    }
-
-    if (isEditMode) {
-      // TODO 수정 api 호출
-      recordDataDispatch({ type: 'UPDATE_RECORD', payload: formData });
-    } else {
-      // TODO 생성 api 호출, resonse값으로 id를 받으면 payload에 추가, 현재는 uuid로 랜덤 생성
-      recordDataDispatch({
-        type: 'ADD_RECORD',
-        payload: {
-          ...formData,
-          id: uuidv4(),
-          createdAt: getTimestamp(new Date()),
-        },
-      });
-    }
-
-    handleReset();
-  };
-
   const handleEdit = (record) => {
     setOriginalFormData(record);
     dispatch({ type: 'INIT_EDIT', payload: record });
+  };
+
+  const buildRecordToSend = (formData, isEditMode) => {
+    return {
+      ...formData,
+      id: isEditMode ? formData.id : uuidv4(),
+      createdAt: isEditMode ? formData.createdAt : getTimestamp(new Date()),
+    };
+  };
+
+  const addRecordIfCurrentMonth = (record, isNowInCurrentMonth) => {
+    if (isNowInCurrentMonth) {
+      recordDataDispatch({ type: 'ADD_RECORD', payload: record });
+    }
+  };
+
+  const updateRecordIfCurrentMonth = (record, isNowInCurrentMonth) => {
+    if (isNowInCurrentMonth) {
+      recordDataDispatch({ type: 'UPDATE_RECORD', payload: record });
+    } else {
+      recordDataDispatch({ type: 'DELETE_RECORD', payload: record.id });
+    }
+  };
+
+  const handleSubmit = async () => {
+    const isEditMode = originalFormData !== null;
+    const isNowInCurrentMonth = isSameYearMonth(
+      currentYear,
+      currentMonth,
+      formData.date
+    );
+
+    const validationResult = recordSchema.safeParse(formData);
+    if (!validationResult.success) return;
+
+    try {
+      const recordToSend = buildRecordToSend(formData, isEditMode); //TODO 추후 서버로 오는 resonse.data 사용 시 buildRecordToSend 함수 제거
+
+      // TODO 서버 api 추가
+      // const response = isEditMode
+      //   ? await patchRecordToServer(recordToSend)
+      //   : await postRecordToServer(recordToSend);
+      // const savedRecord = response.data;
+
+      if (isEditMode) {
+        updateRecordIfCurrentMonth(recordToSend, isNowInCurrentMonth); // TODO 서버 연결 시 recordToSend 대신 savedRecord 사용
+      } else {
+        addRecordIfCurrentMonth(recordToSend, isNowInCurrentMonth);
+      }
+
+      handleReset();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
