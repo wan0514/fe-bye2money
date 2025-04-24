@@ -4,7 +4,7 @@ function DateInput({ value, onChange }) {
       <label>일자</label>
       <input
         type="date"
-        value={value.slice(0, 10)} // yyyy-mm-dd
+        value={value}
         onChange={(e) => onChange(e.target.value)}
       />
     </div>

@@ -1,4 +1,4 @@
-import getTodayTimestamp from '../../../shared/utils/getTodayTimestamp';
+import { getFormatDateToString } from '../../../shared/utils/getFormatDateToString';
 
 const initialFormState = {
   id: null,
@@ -7,7 +7,8 @@ const initialFormState = {
   paymentMethod: '',
   amount: 0,
   type: 'expense',
-  timestamp: getTodayTimestamp(),
+  date: getFormatDateToString(new Date()),
+  createdAt: '',
 };
 
 export default initialFormState;
