@@ -27,8 +27,8 @@ function Form({
       }}
     >
       <DateInput
-        value={formData.timestamp}
-        onChange={(value) => onChange('timestamp', value)}
+        value={formData.date}
+        onChange={(value) => onChange('date', value)}
       />
 
       <AmountInput

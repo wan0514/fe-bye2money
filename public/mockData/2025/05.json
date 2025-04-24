@@ -9,7 +9,8 @@
       "paymentMethod": "현대카드",
       "amount": 20000,
       "type": "income",
-      "timestamp": "2024-08-16T12:34:56Z"
+      "date": "2024-08-16",
+      "createdAt": "2024-08-16T12:34:56Z"
     },
     {
       "id": "04c953af-3dcd-4c7a-ba84-d81088f7c471",
@@ -18,7 +19,8 @@
       "paymentMethod": "현대카드",
       "amount": 30000,
       "type": "income",
-      "timestamp": "2024-08-15T12:34:56Z"
+      "date": "2024-08-15",
+      "createdAt": "2024-08-15T12:34:56Z"
     },
     {
       "id": "602128f3-5c61-4fcf-bb60-4303a1136863",
@@ -27,7 +29,8 @@
       "paymentMethod": "비씨카드",
       "amount": 1000000,
       "type": "income",
-      "timestamp": "2024-08-14T12:34:56Z"
+      "date": "2024-08-14",
+      "createdAt": "2024-08-14T12:34:56Z"
     }
   ]
 }

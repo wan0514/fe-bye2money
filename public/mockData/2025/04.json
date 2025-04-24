@@ -9,7 +9,8 @@
       "paymentMethod": "현대카드",
       "amount": 18000,
       "type": "expense",
-      "timestamp": "2025-04-23T14:35:47Z"
+      "date": "2025-04-23",
+      "createdAt": "2025-04-23T14:35:47Z"
     },
     {
       "id": "8b66ee16-6f7c-4074-900d-1b5cfbe081ec",
@@ -18,7 +19,8 @@
       "paymentMethod": "현대카드",
       "amount": 52000,
       "type": "expense",
-      "timestamp": "2025-04-22T14:35:47Z"
+      "date": "2025-04-22",
+      "createdAt": "2025-04-22T14:35:47Z"
     },
     {
       "id": "b4dae12d-1f9b-4723-8958-156a3580e7db",
@@ -27,7 +29,8 @@
       "paymentMethod": "비씨카드",
       "amount": 15000,
       "type": "expense",
-      "timestamp": "2025-04-21T14:35:47Z"
+      "date": "2025-04-21",
+      "createdAt": "2025-04-21T14:35:47Z"
     }
   ]
 }

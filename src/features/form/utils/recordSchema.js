@@ -3,7 +3,7 @@ import CATEGORY_TYPES from '../../../shared/constants/categoryOptions';
 
 const recordSchema = z
   .object({
-    timestamp: z.string().min(1, '날짜를 입력해주세요'),
+    date: z.string().min(1, '날짜를 입력해주세요'),
     type: z.enum(['income', 'expense'], {
       message: '수입/지출을 선택해주세요',
     }),
