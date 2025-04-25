@@ -44,16 +44,17 @@ const theme = {
 
     // Neutral colors
     neutralSurfaceDefault: '#FFFFFF',
-    neutralSurfaceWeak: '##FBFCFD',
+    neutralSurfaceWeak: '#FBFCFD',
+    neutralSurfacePoint: '#F1F4F8',
     neutralTextDefault: '#000000',
-    neutralTextWeak: '##777D84',
+    neutralTextWeak: '#777D84',
     neutralTextRevDefault: '#FFFFFF',
     neutralBorderDefault: '#000000',
 
     // Brand colors
     brandSurfaceDefault: '#FFFFFF',
     brandTextIncome: '#79B2CA',
-    brandTextExpense: '##E93B5A',
+    brandTextExpense: '#E93B5A',
 
     //danger colors
     dangerSurfaceDefault: '#E93B5A',
