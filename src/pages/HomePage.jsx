@@ -78,6 +78,11 @@ function HomePage() {
     }
   };
 
+  const handleDelete = (recordId) => {
+    recordDataDispatch({ type: 'DELETE_RECORD', payload: recordId });
+    //fetch delete
+  };
+
   return (
     <>
       <Form
@@ -86,7 +91,11 @@ function HomePage() {
         onSubmit={handleSubmit}
         isFormValid={isSubmitEnabled}
       />
-      <Record recordData={records} onSelect={handleEdit} />
+      <Record
+        recordData={records}
+        onSelect={handleEdit}
+        onDelete={handleDelete}
+      />
     </>
   );
 }
