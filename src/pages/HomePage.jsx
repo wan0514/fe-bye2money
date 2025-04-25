@@ -48,8 +48,7 @@ function HomePage() {
   };
 
   const handleSubmit = async () => {
-    const validationResult = recordSchema.safeParse(formData);
-    if (!validationResult.success) return;
+    if (!isFormValid) return;
 
     const isEditMode = originalFormData !== null;
 
