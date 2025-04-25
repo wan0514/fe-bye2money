@@ -27,7 +27,7 @@ function recordReducer(state, action) {
     }
     case 'DELETE_RECORD': {
       const idToDelete = action.payload;
-      return records.filter((prevRecord) => prevRecord.id !== idToDelete);
+      return state.filter((prevRecord) => prevRecord.id !== idToDelete);
     }
     default:
       return state;
