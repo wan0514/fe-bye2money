@@ -119,4 +119,17 @@ theme.typography = {
   },
 };
 
+theme.categoryColors = {
+  생활: 'pastelPerano',
+  쇼핑뷰티: 'pastelChenin',
+  '의료/건강': 'pastelCruise',
+  식비: 'pastelOnahu',
+  교통: 'pastelGlacier',
+  '문화/여가': 'pastelPerfume',
+  미분류: 'pastelLavenderPink',
+  월급: 'pastelPorsche',
+  '기타 수입': 'pastelAlmondFrost',
+  용돈: 'pastelCaper',
+};
+
 export default theme;
