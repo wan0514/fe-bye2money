@@ -11,7 +11,13 @@ const ItemContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.neutralTextDefault};
 `;
 
-export default function RecordDateGroup({ date, records, onSelect, onDelete }) {
+export default function RecordDateGroup({
+  date,
+  records,
+  onSelect,
+  onDelete,
+  editingId,
+}) {
   return (
     <DateGroup>
       <DailyInfo date={date} records={records} />
@@ -22,6 +28,7 @@ export default function RecordDateGroup({ date, records, onSelect, onDelete }) {
             record={record}
             onSelect={onSelect}
             onDelete={onDelete}
+            isEditing={record.id === editingId}
           />
         ))}
       </ItemContainer>

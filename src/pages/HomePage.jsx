@@ -95,6 +95,7 @@ function HomePage() {
         recordData={records}
         onSelect={handleEdit}
         onDelete={handleDelete}
+        editingId={originalFormData?.id ?? null}
       />
     </>
   );

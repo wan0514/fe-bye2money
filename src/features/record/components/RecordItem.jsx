@@ -1,4 +1,18 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+
+const hoveredStyles = (theme) => css`
+  background-color: ${theme.colors.neutralSurfacePoint};
+
+  .delete-button {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .amount {
+    transform: translateX(-40px);
+  }
+`;
 
 const Item = styled.div`
   position: relative;
@@ -9,17 +23,10 @@ const Item = styled.div`
   ${({ theme }) => theme.typography.light14};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.neutralSurfacePoint};
+    ${({ theme }) => hoveredStyles(theme)};
   }
 
-  &:hover .delete-button {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &:hover .amount {
-    transform: translateX(-40px);
-  }
+  ${({ isEditing, theme }) => isEditing && hoveredStyles(theme)}
 `;
 
 const Category = styled.span`
@@ -79,7 +86,7 @@ const DeleteButton = styled.button`
     visibility 0.3s ease;
 `;
 
-export default function RecordItem({ record, onSelect, onDelete }) {
+export default function RecordItem({ record, onSelect, onDelete, isEditing }) {
   const { category, description, paymentMethod, amount, type } = record;
 
   function handleDelete(e) {
@@ -88,7 +95,7 @@ export default function RecordItem({ record, onSelect, onDelete }) {
   }
 
   return (
-    <Item onClick={() => onSelect(record)}>
+    <Item isEditing={isEditing} onClick={() => onSelect(record)}>
       <Category>{category}</Category>
       <Description>{description}</Description>
       <PaymentMethod>{paymentMethod}</PaymentMethod>
