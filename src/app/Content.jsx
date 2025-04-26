@@ -14,18 +14,14 @@ export default function Content() {
   const { records, dispatch } = useRecordState(fetchedData);
 
   useEffect(() => {
-    if (!loading && fetchedData) {
+    if (!loading) {
       dispatch({ type: 'SET_RECORDS', payload: fetchedData });
     }
-  }, [loading, fetchedData]);
+  }, [loading, fetchedData, dispatch]);
 
   return (
     <ContentWrapper>
-      {loading ? (
-        <div>loading...</div>
-      ) : (
-        <Outlet context={{ records, dispatch }} />
-      )}
+      <Outlet context={{ records, dispatch, loading }} />
     </ContentWrapper>
   );
 }
