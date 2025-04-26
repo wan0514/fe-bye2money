@@ -78,9 +78,11 @@ function HomePage() {
     }
   };
 
-  const handleDelete = (recordId) => {
+  const handleDelete = (recordId, isEditing) => {
     recordDataDispatch({ type: 'DELETE_RECORD', payload: recordId });
     //fetch delete
+
+    if (isEditing) handleReset();
   };
 
   return (
