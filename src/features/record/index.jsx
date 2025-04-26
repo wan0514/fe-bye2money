@@ -15,7 +15,12 @@ const ListBox = styled.div`
   margin-top: 16px;
 `;
 
-export default function RecordList({ recordData, onSelect, onDelete }) {
+export default function RecordList({
+  recordData,
+  onSelect,
+  onDelete,
+  editingId,
+}) {
   const [showIncome, setShowIncome] = useState(true);
   const [showExpense, setShowExpense] = useState(true);
 
@@ -46,6 +51,7 @@ export default function RecordList({ recordData, onSelect, onDelete }) {
             records={items}
             onSelect={onSelect}
             onDelete={onDelete}
+            editingId={editingId}
           />
         ))}
       </ListBox>
