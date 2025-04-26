@@ -91,7 +91,7 @@ export default function RecordItem({ record, onSelect, onDelete, isEditing }) {
 
   function handleDelete(e) {
     e.stopPropagation();
-    onDelete(record.id);
+    onDelete(record.id, isEditing);
   }
 
   return (
