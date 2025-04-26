@@ -30,7 +30,13 @@ const useFetchRecordsByDate = (year, month) => {
     }
   }, [year, month]);
 
-  return { data, loading, error };
+  const refetch = () => {
+    setLoading(true);
+    setError(null);
+    fetchData(year, month);
+  };
+
+  return { data, loading, error, refetch };
 };
 
 export default useFetchRecordsByDate;
