@@ -10,12 +10,7 @@ const ContentWrapper = styled.main`
 
 export default function Content() {
   const { year, month } = useParams();
-  const {
-    data: fetchedData,
-    loading,
-    error,
-    refetch,
-  } = useFetchRecordsByDate(year, month);
+  const { data: fetchedData, loading } = useFetchRecordsByDate(year, month);
   const { records, dispatch } = useRecordState(fetchedData);
 
   useEffect(() => {
@@ -26,7 +21,7 @@ export default function Content() {
 
   return (
     <ContentWrapper>
-      <Outlet context={{ records, dispatch, loading, error, refetch }} />
+      <Outlet context={{ records, dispatch, loading }} />
     </ContentWrapper>
   );
 }
