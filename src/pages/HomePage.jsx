@@ -91,6 +91,7 @@ function HomePage() {
         formData={formData}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onReset={handleReset}
         isFormValid={isSubmitEnabled}
       />
       <Record

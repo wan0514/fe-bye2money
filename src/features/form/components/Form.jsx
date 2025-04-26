@@ -5,11 +5,13 @@ import DescriptionInput from './DescriptionInput';
 import PaymentMethodSelect from './PaymentMethodSelect';
 import CategorySelect from './CategorySelect';
 import ConfirmButton from './ConfirmButton';
+import ResetFormButton from './ResetFormButton';
 
 function Form({
   formData,
   onChange,
   onSubmit,
+  onReset,
   paymentOptions,
   categoryOptions,
   isFormValid,
@@ -58,6 +60,7 @@ function Form({
       />
 
       <ConfirmButton onClick={onSubmit} isFormValid={isFormValid} />
+      <ResetFormButton onClick={onReset} />
     </form>
   );
 }
