@@ -16,7 +16,7 @@ import Record from '../features/record';
 
 function HomePage() {
   const { currentYear, currentMonth } = useCurrentYearMonthNumber();
-  const [formData, dispatch] = useReducer(formReducer, initialFormState);
+  const [formData, formDispatch] = useReducer(formReducer, initialFormState);
   const [originalFormData, setOriginalFormData] = useState(null);
   const { records, dispatch: recordDataDispatch } = useOutletContext();
 
@@ -30,17 +30,17 @@ function HomePage() {
   }, [formData, originalFormData]);
 
   const handleChange = (field, value) => {
-    dispatch({ type: 'SET_FIELD', field, value });
+    formDispatch({ type: 'CHANGE', field, value });
   };
 
   const handleReset = () => {
     setOriginalFormData(null);
-    dispatch({ type: 'RESET_FORM' });
+    formDispatch({ type: 'RESET' });
   };
 
   const handleEdit = (record) => {
     setOriginalFormData(record);
-    dispatch({ type: 'INIT_EDIT', payload: record });
+    formDispatch({ type: 'INIT', payload: record });
   };
 
   const buildRecordToSend = (formData, isEditMode) => {
