@@ -66,10 +66,9 @@ function HomePage() {
       formData.date
     );
 
-    const recordToSend = buildRecordToSend(formData, isEditMode); //TODO 추후 서버로 오는 resonse.data 사용 시 buildRecordToSend 함수 제거
+    const recordToSend = buildRecordToSend(formData, isEditMode);
 
     try {
-      // TODO 서버 api 추가
       const response = isEditMode
         ? await patchRecordToServer(recordToSend)
         : await postRecordToServer(recordToSend);
