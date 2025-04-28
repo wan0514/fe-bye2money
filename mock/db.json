@@ -1,19 +1,19 @@
 {
   "records": [
     {
-      "id": 1,
+      "id": "a1b2c3d4",
       "date": "2025-04-27",
       "type": "expense",
       "category": "식비",
       "description": "점심 식사",
-      "amount": 12000,
+      "amount": 1200022,
       "paymentMethod": "카드",
       "createdAt": "2025-04-27T00:00:00Z",
       "year": "2025",
       "month": "04"
     },
     {
-      "id": 2,
+      "id": "e5f6g7h8",
       "date": "2025-04-27",
       "type": "income",
       "category": "월급",
@@ -25,7 +25,7 @@
       "month": "04"
     },
     {
-      "id": 3,
+      "id": "i9j0k1l2",
       "date": "2025-03-05",
       "type": "expense",
       "category": "교통",
@@ -37,7 +37,7 @@
       "month": "03"
     },
     {
-      "id": 4,
+      "id": "m3n4o5p6",
       "date": "2025-03-12",
       "type": "income",
       "category": "기타 수입",
@@ -49,7 +49,7 @@
       "month": "03"
     },
     {
-      "id": 5,
+      "id": "q7r8s9t0",
       "date": "2025-03-18",
       "type": "expense",
       "category": "식비",
@@ -61,7 +61,7 @@
       "month": "03"
     },
     {
-      "id": 6,
+      "id": "u1v2w3x4",
       "date": "2025-03-22",
       "type": "expense",
       "category": "문화/여가",
@@ -73,7 +73,7 @@
       "month": "03"
     },
     {
-      "id": 7,
+      "id": "y5z6a7b8",
       "date": "2025-03-28",
       "type": "income",
       "category": "월급",
@@ -85,7 +85,7 @@
       "month": "03"
     },
     {
-      "id": 8,
+      "id": "c9d0e1f2",
       "date": "2025-04-03",
       "type": "expense",
       "category": "생활",
@@ -97,7 +97,7 @@
       "month": "04"
     },
     {
-      "id": 9,
+      "id": "g3h4i5j6",
       "date": "2025-04-10",
       "type": "expense",
       "category": "의료/건강",
@@ -109,7 +109,7 @@
       "month": "04"
     },
     {
-      "id": 10,
+      "id": "k7l8m9n0",
       "date": "2025-04-15",
       "type": "income",
       "category": "기타 수입",
@@ -121,7 +121,7 @@
       "month": "04"
     },
     {
-      "id": 11,
+      "id": "o1p2q3r4",
       "date": "2025-04-20",
       "type": "expense",
       "category": "쇼핑/뷰티",
@@ -133,7 +133,7 @@
       "month": "04"
     },
     {
-      "id": 12,
+      "id": "s5t6u7v8",
       "date": "2025-04-25",
       "type": "expense",
       "category": "교통",
@@ -145,7 +145,7 @@
       "month": "04"
     },
     {
-      "id": 13,
+      "id": "w9x0y1z2",
       "date": "2025-05-02",
       "type": "income",
       "category": "월급",
@@ -157,7 +157,7 @@
       "month": "05"
     },
     {
-      "id": 14,
+      "id": "a3b4c5d6",
       "date": "2025-05-08",
       "type": "expense",
       "category": "식비",
@@ -169,7 +169,7 @@
       "month": "05"
     },
     {
-      "id": 15,
+      "id": "e7f8g9h0",
       "date": "2025-05-14",
       "type": "expense",
       "category": "생활",
@@ -181,7 +181,7 @@
       "month": "05"
     },
     {
-      "id": 16,
+      "id": "i1j2k3l4",
       "date": "2025-05-20",
       "type": "expense",
       "category": "문화/여가",
@@ -193,7 +193,7 @@
       "month": "05"
     },
     {
-      "id": 17,
+      "id": "m5n6o7p8",
       "date": "2025-05-26",
       "type": "income",
       "category": "기타 수입",
@@ -206,12 +206,12 @@
     }
   ],
   "payments": [
-    { "id": 1, "name": "현대카드" },
-    { "id": 2, "name": "신한카드" },
-    { "id": 3, "name": "우리카드" },
-    { "id": 4, "name": "카카오뱅크" },
-    { "id": 5, "name": "토스뱅크" },
-    { "id": 6, "name": "삼성카드" },
-    { "id": 7, "name": "비씨카드" }
+    { "id": "q9r0s1t2", "name": "현대카드" },
+    { "id": "u3v4w5x6", "name": "신한카드" },
+    { "id": "y7z8a9b0", "name": "우리카드" },
+    { "id": "c1d2e3f4", "name": "카카오뱅크" },
+    { "id": "g5h6i7j8", "name": "토스뱅크" },
+    { "id": "k9l0m1n2", "name": "삼성카드" },
+    { "id": "o3p4q5r6", "name": "비씨카드" }
   ]
 }
