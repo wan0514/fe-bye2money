@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BASE_URL, API } from '../constants/api';
 
 const useFetchRecordsByDate = (year, month) => {
   const [data, setData] = useState([]);
@@ -7,13 +8,14 @@ const useFetchRecordsByDate = (year, month) => {
 
   const fetchData = async (year, month) => {
     try {
-      // TODO 실제 API url로 변경
-      const response = await fetch(`/mockData/${year}/${month}.json`);
+      const response = await fetch(
+        `${BASE_URL}${API.RECORDS}?year=${year}&month=${month}`
+      );
       if (!response.ok) {
         throw new Error('Data file not found');
       }
       const result = await response.json();
-      setData(result.records);
+      setData(result);
     } catch (err) {
       setError(err.message); //TODO 메세지에 따라 외부에서 사용자를 위한 에러핸들링 처리
     } finally {
