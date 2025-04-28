@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BASE_URL, API } from '../constants/api';
 
 export default function useFetchPayments(userId) {
   const [payments, setPayments] = useState([]);
@@ -7,8 +8,7 @@ export default function useFetchPayments(userId) {
 
   const fetchPayments = async () => {
     try {
-      // TODO 실제 API url로 변경
-      const response = await fetch(`/mockData/payments${userId}.json`);
+      const response = await fetch(`${BASE_URL}${API.PAYMENTS}`);
       if (!response.ok) {
         throw new Error('Data file not found');
       }
