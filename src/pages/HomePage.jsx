@@ -6,7 +6,7 @@ import {
 } from '../shared/api/recordsApi';
 import useCurrentYearMonthNumber from '../shared/hooks/useCurrentYearMonthNumber';
 import { isSameYearMonth } from '../shared/utils/date';
-import { getTimestamp } from '../shared/utils/date';
+import { buildRecordToSend } from '../shared/utils/record';
 
 import useRecordForm from '../features/form/hooks/useRecordForm';
 import initialFormState from '../features/form/reducers/initialFormState';
@@ -32,18 +32,6 @@ function HomePage() {
     initialState: initialFormState,
     onSave: handleSubmit,
   });
-
-  function buildRecordToSend(formData, isEditing) {
-    const [year, month] = formData.date.split('-');
-
-    return {
-      ...formData,
-      id: isEditing ? formData.id : undefined,
-      createdAt: isEditing ? formData.createdAt : getTimestamp(new Date()),
-      year,
-      month,
-    };
-  }
 
   async function handleSubmit() {
     const isInCurrentMonth = isSameYearMonth(
