@@ -1,5 +1,3 @@
-import initialFormState from './initialFormState';
-
 export default function formReducer(state, action) {
   switch (action.type) {
     case 'CHANGE':
@@ -14,7 +12,9 @@ export default function formReducer(state, action) {
       };
 
     case 'RESET':
-      return initialFormState;
+      return {
+        ...action.initialState,
+      };
 
     default:
       return state;
