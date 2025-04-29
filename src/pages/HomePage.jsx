@@ -12,6 +12,7 @@ import useRecordForm from '../features/form/hooks/useRecordForm';
 import initialFormState from '../features/form/reducers/initialFormState';
 import recordSchema from '../features/form/utils/recordSchema';
 
+import HomeLayout from '../layouts/HomeLayout';
 import Form from '../features/form';
 import Record from '../features/record';
 
@@ -70,7 +71,7 @@ function HomePage() {
   };
 
   return (
-    <>
+    <HomeLayout>
       <Form
         formData={formValues}
         onChange={onChange}
@@ -84,7 +85,7 @@ function HomePage() {
         onDelete={handleDelete}
         editingId={originalRecord?.id ?? null}
       />
-    </>
+    </HomeLayout>
   );
 }
 
