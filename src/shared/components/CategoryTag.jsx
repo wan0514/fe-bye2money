@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 const StyledCategoryTag = styled.span`
+  display: inline-block;
   width: 92px;
   flex: 0 0 auto;
   padding: 16px 23px;
