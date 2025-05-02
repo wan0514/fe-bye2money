@@ -70,7 +70,7 @@ const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.neutralSurfaceDefault};
 `;
 
-const Modal = ({ title, content, actions }) => {
+const Modal = ({ title, content, action, onClose }) => {
   return (
     <ModalOverlay>
       <ModalContainer>
@@ -79,16 +79,17 @@ const Modal = ({ title, content, actions }) => {
           {content}
         </ModalContents>
         <ModalActions>
-          {actions.map((action, index) => (
-            <Button
-              key={index}
-              onClick={action.onClick}
-              variant={action.variant}
-              disabled={action.disabled}
-            >
-              {action.label}
-            </Button>
-          ))}
+          <Button key="cancle" onClick={onClose} variant="weak">
+            취소
+          </Button>
+          <Button
+            key="confirm"
+            onClick={action.onClick}
+            variant={action.variant}
+            disabled={action.disabled}
+          >
+            {action.label}
+          </Button>
         </ModalActions>
       </ModalContainer>
     </ModalOverlay>
