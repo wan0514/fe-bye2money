@@ -53,8 +53,8 @@ const Wrapper = styled.div`
     const backgroundColorMap = {
       enabled: theme?.colors.neutralSurfacePoint,
       disabled: theme?.colors.neutralSurfaceWeak,
-      active: 'transparent',
-      error: 'transparent',
+      active: theme?.colors.neutralSurfaceDefault,
+      error: theme?.colors.neutralSurfaceDefault,
     };
 
     const borderColorMap = {
@@ -65,11 +65,12 @@ const Wrapper = styled.div`
     return css`
       width: 100%;
       background-color: ${backgroundColorMap[visualState]};
-      border: ${['active', 'error'].includes(visualState)
-        ? `1px solid ${borderColorMap[visualState]}`
-        : 'transparent'};
+      box-shadow: ${['active', 'error'].includes(visualState)
+        ? `0 0 0 1px ${borderColorMap[visualState]}`
+        : 'none'};
       padding: 8px 16px;
       border-radius: 8px;
+      box-sizing: border-box;
     `;
   }}
 `;
@@ -77,6 +78,7 @@ const Wrapper = styled.div`
 const StyledInput = styled.input`
   width: 100%;
   min-width: 288px;
+  padding: 4px 0;
 
   ${({ theme }) => css`
     ${theme?.typography.semibold12};
