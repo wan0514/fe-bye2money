@@ -11,43 +11,40 @@ const DropdownContainer = styled.div`
 `;
 
 function Dropdown({ items, selectedItem, onSelect, onAdd, renderItemAction }) {
-  const itemNodes = items.map((item) => (
-    <DropdownItem
-      key={item.id}
-      item={item}
-      isSelected={selectedItem?.id === item.id}
-      onClick={onSelect}
-      action={renderItemAction?.(item)}
-    />
-  ));
-
-  if (onAdd) {
-    itemNodes.push(
+  const itemNodes = items.flatMap((item, idx, arr) => {
+    const node = (
       <DropdownItem
-        key="__add__"
-        item={{ id: '__add__', name: '추가하기' }}
-        isSelected={false}
-        onClick={() => onAdd()}
+        key={item.id}
+        item={item}
+        isSelected={selectedItem?.id === item.id}
+        onClick={() => onSelect(item)}
+        action={renderItemAction?.(item)}
       />
     );
-  }
 
-  const nodesWithDividers = itemNodes.flatMap((node, idx, arr) => {
-    if (idx < arr.length - 1) {
-      return [
-        node,
-        <Driver
-          key={`div-${idx}`}
-          orientation="horizontal"
-          thickness={1}
-          inset={24}
-        />,
-      ];
-    }
-    return [node];
+    return idx < arr.length - 1
+      ? [node, <Driver key={`div-${item.id}`} inset={24} />]
+      : [node];
   });
 
-  return <DropdownContainer>{nodesWithDividers}</DropdownContainer>;
+  return (
+    <DropdownContainer>
+      {itemNodes}
+
+      {onAdd && (
+        <>
+          {items.length > 0 && <Driver key="div-add" inset={24} />}
+
+          <DropdownItem
+            key="__add__"
+            item={{ id: '__add__', name: '추가하기' }}
+            isSelected={false}
+            onClick={onAdd}
+          />
+        </>
+      )}
+    </DropdownContainer>
+  );
 }
 
 export default Dropdown;
