@@ -1,32 +1,19 @@
-import styled from '@emotion/styled';
+import { ItemWrapper, ItemLabel } from './ItemStyle';
+import ItemRemoveButton from './ItemRemoveButton';
 
-const ItemWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 24px;
-  color: ${({ isSelected, theme }) =>
-    isSelected ? theme.colors.pastelSeagull : theme.colors.neutralTextDefault};
-
-  ${({ theme }) => theme.typography.light12};
-
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.neutralSurfacePoint};
-  }
-`;
-
-const ItemLabel = styled.span`
-  display: inline-block;
-  width: 72px;
-`;
-
-export default function DropdownItem({ item, onClick, action, isSelected }) {
+export default function DropdownItem({ item, onClick, onDelete, isSelected }) {
   return (
     <ItemWrapper isSelected={isSelected} onClick={() => onClick(item)}>
       <ItemLabel>{item.name}</ItemLabel>
-      {action}
+
+      {onDelete && (
+        <ItemRemoveButton
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete(item.id);
+          }}
+        />
+      )}
     </ItemWrapper>
   );
 }

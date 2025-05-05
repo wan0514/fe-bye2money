@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Driver from '../Driver';
 import DropdownItem from './DropdownItem';
+import AddButton from './AddButton';
 
 const DropdownContainer = styled.div`
   width: fit-content;
@@ -10,15 +11,15 @@ const DropdownContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.neutralTextDefault};
 `;
 
-function Dropdown({ items, selectedItem, onSelect, onAdd, renderItemAction }) {
+function Dropdown({ items, selectedItem, onSelect, onAdd, onDelete }) {
   const itemNodes = items.flatMap((item, idx, arr) => {
     const node = (
       <DropdownItem
         key={item.id}
         item={item}
         isSelected={selectedItem?.id === item.id}
-        onClick={() => onSelect(item)}
-        action={renderItemAction?.(item)}
+        onClick={onSelect}
+        onDelete={onDelete}
       />
     );
 
@@ -34,13 +35,7 @@ function Dropdown({ items, selectedItem, onSelect, onAdd, renderItemAction }) {
       {onAdd && (
         <>
           {items.length > 0 && <Driver key="div-add" inset={24} />}
-
-          <DropdownItem
-            key="__add__"
-            item={{ id: '__add__', name: '추가하기' }}
-            isSelected={false}
-            onClick={onAdd}
-          />
+          <AddButton key="__add__" onAdd={onAdd} />
         </>
       )}
     </DropdownContainer>
