@@ -62,21 +62,23 @@ const ModalActions = styled.div`
 const Button = styled.button`
   width: 100%;
   padding: 16px 0;
-  color: ${({ variant = 'emphasized', theme }) =>
-    theme.colors[colorMap[variant]]};
+  color: ${({ variant = 'emphasized', disabled, theme }) =>
+    disabled
+      ? theme.colors[colorMap['weak']]
+      : theme.colors[colorMap[variant]]};
 
   ${({ theme }) => theme.typography.semibold16};
 
   background-color: ${({ theme }) => theme.colors.neutralSurfaceDefault};
 `;
 
-const Modal = ({ title, content, action, onClose }) => {
+const Modal = ({ title, children, action, onClose }) => {
   return (
     <ModalOverlay>
       <ModalContainer>
         <ModalContents>
           <ModalTitle>{title}</ModalTitle>
-          {content}
+          {children}
         </ModalContents>
         <ModalActions>
           <Button key="cancle" onClick={onClose} variant="weak">
