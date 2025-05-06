@@ -11,7 +11,7 @@ const ItemWrapper = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.surfacePoint};
+    background-color: ${({ theme }) => theme.colors.neutralSurfacePoint};
   }
 `;
 
