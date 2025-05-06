@@ -1,39 +1,23 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import Modal from '../shared/components/Modal';
+
 import ModalContext from './modalContext';
 
-const initialState = {
-  isOpen: false,
-  title: '',
-  content: null,
-  action: {},
-};
-
 const ModalProvider = ({ children }) => {
-  const [modalState, setModalState] = useState(initialState);
+  const [modalNode, setModalNode] = useState(null);
 
-  const openModal = ({ title, content, action }) => {
-    setModalState({ isOpen: true, title, content, action });
-  };
-
-  const closeModal = () => {
-    setModalState(initialState);
-  };
+  const openModal = useCallback((node) => {
+    setModalNode(node);
+  }, []);
+  const closeModal = useCallback(() => {
+    setModalNode(null);
+  }, []);
 
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
-      {modalState.isOpen &&
-        ReactDOM.createPortal(
-          <Modal
-            title={modalState.title}
-            content={modalState.content}
-            action={modalState.action}
-            onClose={closeModal}
-          />,
-          document.getElementById('modal-root')
-        )}
+      {modalNode &&
+        ReactDOM.createPortal(modalNode, document.getElementById('modal-root'))}
     </ModalContext.Provider>
   );
 };
