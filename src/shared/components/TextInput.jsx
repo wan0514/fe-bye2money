@@ -32,11 +32,18 @@ export default function TextInput({
         ? 'active'
         : 'enabled';
 
+  const handleChange = (e) => {
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
+
   return (
     <Wrapper type={type} visualState={visualState}>
       <StyledInput
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        readOnly={!onChange}
+        onChange={handleChange}
         placeholder={placeholderText}
         disabled={disabled}
         onFocus={() => setIsFocused(true)}
