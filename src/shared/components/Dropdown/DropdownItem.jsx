@@ -10,7 +10,7 @@ export default function DropdownItem({ item, onClick, onDelete, isSelected }) {
         <ItemRemoveButton
           onClick={(e) => {
             e.stopPropagation();
-            onDelete(item.id);
+            onDelete(item);
           }}
         />
       )}
